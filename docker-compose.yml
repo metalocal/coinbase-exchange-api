@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  # https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker
+  swagger_ui:
+    # git clone https://github.com/swagger-api/swagger-ui.git
+    # git checkout v3.18.3
+    # docker build -t swagger-ui:latest .
+    image: swagger-ui:latest
+    environment:
+      - SWAGGER_JSON=/tmp/api.oas3.json
+      - PERSIST_AUTHORIZATION=true
+    volumes:
+      - ./api.oas3.json:/tmp/api.oas3.json:ro
+    ports:
+      - 8081:8080
